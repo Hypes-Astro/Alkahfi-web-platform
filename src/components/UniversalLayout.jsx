@@ -7,7 +7,7 @@ const UniversalLayout = () => {
     return (
         <main data-theme="light" className="min-h-screen">
             <Navbar/>
-            <div className="mx-6">
+            <div className="layoutChild">
                 <Outlet />
             </div>
             <Footer/>
