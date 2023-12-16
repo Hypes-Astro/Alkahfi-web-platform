@@ -1,8 +1,12 @@
-const Service = () => {
-    return(
-        <div className="h-screen bg-white">
+import CardServiceFeature from "./CardServiceFeature";
 
-        </div>
+
+const Service = ({jadwalSholat,oneHadist}) => {
+
+    return(
+        <>
+            <CardServiceFeature jadwalSholat={jadwalSholat} oneHadist={oneHadist}/>
+        </>
     );
 }
 

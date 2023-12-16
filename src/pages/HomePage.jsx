@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import JadwalSholatModel from "../Model/JadwalSholatModel";
 import Headline from "../components/Home/Headline";
 import Service from "../components/Home/Service";
-import { data } from "autoprefixer";
+
 
 
 
@@ -12,7 +12,10 @@ const HomePage = () => {
 
 
     const [jadwalSholatData,setjadwalSholatData] = useState(null);
+    const [jadwalSholatToday,setjadwalSholatToday] = useState(null);
+    
 
+    // jadwal Sholat
     useEffect(() => {
         const fetchData = async () => {
             const jadwalSholatModel = new JadwalSholatModel('0501');
@@ -24,28 +27,16 @@ const HomePage = () => {
 
             try {
                 const data = await jadwalSholatModel.getJadwalSholatByDate(year, month);
-                console.log("Data Jadwal Sholat:", data.jadwal);
 
-                const dataJadwal = data.jadwal;
-                // console.log("jumlah : ",dataJadwal.length, "bulan : ", month ) // ini bisa mendapatkan panjang bisa di otak atik berdasarkan nilai [0]
-                console.log("--------");
-
-                
+                const dataJadwal = data.jadwal;            
                 setjadwalSholatData(dataJadwal);
-                console.log("ini isi setJadwal  : ",jadwalSholatData)
                 
-                console.table(jadwalSholatData)
 
+                // TODAY
+                const todayDate = await jadwalSholatModel.getJadwalSholatByToday(year,month,today);                
+                const dataJToday = todayDate.jadwal;
+                setjadwalSholatToday(dataJToday);
 
-                const todayDate = await jadwalSholatModel.getJadwalSholatByToday(year,month,today);
-                let jamSholat = todayDate.jadwal.subuh; 
-                // if(jamSholat > data.jadwal[0].terbit){
-                //     alert("waktu shubuh")
-                // }else{
-                //     alert("Waktu bukan shubuh")
-                // }
-                
-                
 
                 // Lakukan sesuatu dengan data, misalnya langsung tampilkan di komponen Headline
                 // (tanpa menggunakan state)
@@ -57,12 +48,16 @@ const HomePage = () => {
         fetchData();
     }, []);
 
+
     return (
-        <>
-            <Headline dataJadwalSholat={jadwalSholatData} />
-            <Service />
-        </>
-    );
+    <>
+        {jadwalSholatToday && <Headline dataJadwalSholat={jadwalSholatToday} />}
+        {jadwalSholatData && jadwalSholatToday && (
+            <Service jadwalSholat={jadwalSholatData} jadWalSholatToday={jadwalSholatToday} />
+        ) }
+    </>
+);
+
 }
 
 export default HomePage;
