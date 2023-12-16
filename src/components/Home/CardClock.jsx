@@ -4,6 +4,7 @@ import  { useState, useEffect } from 'react';
 const CardClock = ({dataJadwalSholat}) => {
 
   let waktuSholat = "";
+  console.log("ini " + dataJadwalSholat)
 
   // jam realtime
   const [currentTime, setCurrentTime] = useState(new Date());
