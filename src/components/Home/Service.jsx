@@ -5,7 +5,7 @@ const Service = ({jadwalSholat,oneHadist}) => {
 
     return(
         <>
-            <CardServiceFeature jadwalSholat={jadwalSholat} oneHadist={oneHadist}/>
+            <CardServiceFeature  oneHadist={oneHadist}/>
         </>
     );
 }

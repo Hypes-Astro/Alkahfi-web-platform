@@ -3,7 +3,7 @@ import CardClock from "./CardClock";
 import CardSholatToday from "./CardSholatToday";
 
 const Headline = ({dataJadwalSholat}) => {
-  
+  // console.log(dataJadwalSholat)
   return (
     <div className="w-full pt-5 px-6   ">
       <div className="content bg-blue-50 p-2 rounded-md flex sm:flex-row justify-between h-full ">

@@ -4,7 +4,7 @@ import  { useState, useEffect } from 'react';
 const CardClock = ({dataJadwalSholat}) => {
 
   let waktuSholat = "";
-  console.log("ini " + dataJadwalSholat)
+  
 
   // jam realtime
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -28,15 +28,15 @@ const CardClock = ({dataJadwalSholat}) => {
   
 
   
-  if (waktuSekarang >= dataJadwalSholat.dzuhur && waktuSekarang < dataJadwalSholat.ashar) {
+  if (waktuSekarang >= dataJadwalSholat.Dhuhr && waktuSekarang < dataJadwalSholat.Asr) {
     waktuSholat = "Dzuhur";
-  } else if (waktuSekarang >= dataJadwalSholat.ashar && waktuSekarang < dataJadwalSholat.maghrib) {
+  } else if (waktuSekarang >= dataJadwalSholat.Asr && waktuSekarang < dataJadwalSholat.Maghrib) {
     waktuSholat = "Ashar";
-  } else if (waktuSekarang >= dataJadwalSholat.maghrib && waktuSekarang < dataJadwalSholat.isya) {
+  } else if (waktuSekarang >= dataJadwalSholat.Maghrib && waktuSekarang < dataJadwalSholat.Isha) {
     waktuSholat = "Maghrib";
-  } else if (waktuSekarang >= dataJadwalSholat.isya || waktuSekarang < dataJadwalSholat.subuh) {
+  } else if (waktuSekarang >= dataJadwalSholat.Isha || waktuSekarang < dataJadwalSholat.Fajr) {
     waktuSholat = "Isya";
-  } else if (waktuSekarang >= dataJadwalSholat.subuh && waktuSekarang < dataJadwalSholat.dhuha) {
+  } else if (waktuSekarang >= dataJadwalSholat.Fajr && waktuSekarang < dataJadwalSholat.Sunrise) {
     waktuSholat = "Subuh";
   } else {
     waktuSholat = "Dhuha";

@@ -8,7 +8,7 @@ import ScheduleImg from "../../assets/Calendar.png"
 import BookImg from "../../assets/AlQuranBook.png"
 import DoaImg from "../../assets/Chat.png"
 
-const CardServiceFeature = ({ jadWalSholatToday, jadwalSholat }) => {
+const CardServiceFeature = ({ jadwalSholat }) => {
   const [oneHadis, setOneHadis] = useState(null);
   const [oneDoa, setOneDoa] = useState(null);
 
@@ -87,7 +87,7 @@ const CardServiceFeature = ({ jadWalSholatToday, jadwalSholat }) => {
   
 
   return (
-    <div className="ContainerFeature w-full flex flex-col p-5 w-full justify-center items-center flex-wrap">
+    <div className="ContainerFeature w-full flex flex-col p-5 justify-center items-center flex-wrap">
       <h1 className="text-2xl font-bold mb-4" >Service</h1>
       <div className="boxervice flex gap-5 justify-center items-center w-full flex-wrap">
         <a href="/comingsoon" className="shadow-sm hover:shadow-lg" >

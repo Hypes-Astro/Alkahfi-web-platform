@@ -26,31 +26,31 @@ const resultString = `${day}, ${month} ${year}`;
                 <div className="boxSholat hover:shadow-2xl text-center w-[20vw] sm:w-[15vw] bg-white flex justify-center items-center flex-col p-2 rounded-lg">
                     <img src={imageShubuh} alt="" />
                     <p className="shubuh font-medium pb-3">Shubuh</p>
-                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.subuh} </p>
+                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.Fajr} </p>
                 </div>
 
                 <div className="boxSholat hover:shadow-2xl text-center w-[20vw] sm:w-[15vw] bg-white flex justify-center items-center flex-col p-2 rounded-lg">
                     <img src={imageDzuhur} alt="" />
                     <p className="shubuh font-medium pb-3">Dzuhur</p>
-                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.dzuhur} </p>
+                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.Dhuhr} </p>
                 </div>
 
                 <div className="boxSholat hover:shadow-2xl text-center w-[20vw] sm:w-[15vw] bg-white flex justify-center items-center flex-col p-2 rounded-lg">
                     <img src={imageAshar} alt="" />
                     <p className="shubuh font-medium pb-3">Ashar</p>
-                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.ashar} </p>
+                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.Asr} </p>
                 </div>
 
                 <div className="boxSholat hover:shadow-2xl text-center w-[20vw] sm:w-[15vw] bg-white flex justify-center items-center flex-col p-2 rounded-lg">
                     <img src={imageMaghrib} alt="" />
                     <p className="shubuh font-medium pb-3">Maghrib</p>
-                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.maghrib} </p>
+                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.Maghrib} </p>
                 </div>
 
                 <div className="boxSholat hover:shadow-2xl text-center w-[20vw] sm:w-[15vw] bg-white flex justify-center items-center flex-col p-2 rounded-lg">
                     <img src={imageIsya} alt="" />
                     <p className="shubuh font-medium pb-3">Isya</p>
-                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.isya} </p>
+                    <p className="font-semibold text-blue-800"> {jadWalSholatToday.Isha} </p>
                 </div>
                 
             </div>
