@@ -28,7 +28,7 @@ class TesJadwal {
       const data = await response.json();
 
       const dataTanggal = data.data.find(item => item.date.gregorian.day == this.tanggal);
-
+      console.log("model : " + dataTanggal)
       if (dataTanggal) {
         const jadwalSholat = this.hilangkanWIB(dataTanggal.timings);
         console.log(`Jadwal Sholat pada tanggal ${this.tanggal}:`, jadwalSholat);

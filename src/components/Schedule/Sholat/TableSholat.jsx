@@ -1,6 +1,7 @@
 import  { useState } from 'react';
 
 const TableSholat = ({ jadwalSholat }) => {
+
   const itemsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -14,7 +15,10 @@ const TableSholat = ({ jadwalSholat }) => {
     setCurrentPage(newPage);
   };
 
-  // -
+  const HilangkanWib = (timing) => {
+    return timing.replace(/\s\(WIB\)/g,'');
+  }
+
 
   const today = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -24,10 +28,9 @@ const TableSholat = ({ jadwalSholat }) => {
 
   return (
     <div className="overflow-x-auto w-full flex h-screen flex-col items-center">
-      <div className="today-info mb-4">
-        <p className='text-center'>Hari ini, {formattedDate}</p>  
-      
-        <table className="table table-zebra">
+      <div className="today-info mb-4 ">
+        <p className='text-center my-5'>Hari ini, {formattedDate}</p>    
+        <table className="table table-zebra table-auto">
           {/* head */}
           <thead>
             <tr>
@@ -40,7 +43,6 @@ const TableSholat = ({ jadwalSholat }) => {
               <th>Ashar</th>
               <th>Maghrib</th>
               <th>Isya</th>
-              {/* Tambahkan kolom untuk dzuhur, ashar, maghrib, isya jika diperlukan */}
             </tr>
           </thead>
           <tbody>
@@ -49,28 +51,31 @@ const TableSholat = ({ jadwalSholat }) => {
                 <th>{indexOfFirstItem + index + 1}</th>
                 <td>{jadwal.date.readable}</td>
 
-                <td>{jadwal.timings.Fajr}</td>
-                <td>{jadwal.timings.Sunrise}</td>
-                <td>{jadwal.timings.Dhuhr}</td>
-                <td>{jadwal.timings.Asr}</td>
-                <td>{jadwal.timings.Dhuhr}</td>
-                <td>{jadwal.timings.Dhuhr}</td>
-
-                {/* Tambahkan kolom untuk dzuhur, ashar, maghrib, isya jika diperlukan */}
+                <td> {HilangkanWib(jadwal.timings.Fajr)} </td>
+                <td>{HilangkanWib(jadwal.timings.Sunrise)}</td>
+                <td>{HilangkanWib(jadwal.timings.Dhuhr)}</td>
+                <td>{HilangkanWib(jadwal.timings.Asr)}</td>
+                <td>{HilangkanWib(jadwal.timings.Maghrib)}</td>
+                <td>{HilangkanWib(jadwal.timings.Isha)}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="pagination">
-        <button
+
+      <span className='w-full text-center mb-3' >{`Page ${currentPage} of ${totalPages}`}</span>
+      <div className="pagination flex gap-5 w-1/2 align-middle  justify-center">
+        <button className='btn btn-sm btn-info'
           onClick={() => handleChangePage(currentPage - 1)}
           disabled={currentPage === 1}
         >
           Previous
         </button>
-        <span>{`Page ${currentPage} of ${totalPages}`}</span>
+
+        
+
         <button
+          className='btn btn-sm btn-info'
           onClick={() => handleChangePage(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
