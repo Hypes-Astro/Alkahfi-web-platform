@@ -1,5 +1,5 @@
 // App.jsx
-import {BrowserRouter as Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import UniversalLayout from './components/UniversalLayout';
 import HomePage from './pages/HomePage';
 
@@ -10,8 +10,8 @@ import ScheduleSholat from './pages/ScheduleSholat';
 
 const App = () => {
   return (
-      <Switch>
-
+    <Router>
+      <Routes>
         <Route path="/" element={<UniversalLayout />}>
       
           <Route path="/" element={<HomePage />} />
@@ -21,8 +21,8 @@ const App = () => {
           <Route path='*' element={<NotFound/>} />
           <Route path="/comingsoon" element={<ComingSoon />} />
         </Route>
-      </Switch>
-    
+      </Routes>
+    </Router>
     
   );
 };
