@@ -1,11 +1,11 @@
 import CardServiceFeature from "./CardServiceFeature";
 
 
-const Service = ({jadwalSholat,oneHadist}) => {
+const Service = () => {
 
     return(
         <>
-            <CardServiceFeature  oneHadist={oneHadist}/>
+            <CardServiceFeature />
         </>
     );
 }

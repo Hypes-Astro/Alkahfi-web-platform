@@ -8,7 +8,7 @@ import ScheduleImg from "../../assets/Calendar.png"
 import BookImg from "../../assets/AlQuranBook.png"
 import DoaImg from "../../assets/Chat.png"
 
-const CardServiceFeature = ({ jadwalSholat }) => {
+const CardServiceFeature = () => {
   const [oneHadis, setOneHadis] = useState(null);
   const [oneDoa, setOneDoa] = useState(null);
 

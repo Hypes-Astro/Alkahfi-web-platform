@@ -1,23 +1,32 @@
 import { useEffect, useState } from "react";
 import TableSholat from "../components/Schedule/Sholat/TableSholat";
-import JadwalSholatModel from "../Model/JadwalSholatModel"; 
+import TesJadwal from "../Model/TesModel";
+
 
 const ScheduleSholat = () => {
     const [dataJadwalSholat, setdataJadwalSholat] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            const jadwalSholatModel = new JadwalSholatModel('0501');
 
             let time = new Date();
             let year = time.getFullYear();
+           
             let month = time.getMonth() + 1;
 
+            
+           // All day  - one
+           const jadwalSholat = new TesJadwal(year, month, null, "Bintan", "Indonesia", 2);
+            
+            
+            
             try {
-                const data = await jadwalSholatModel.getJadwalSholatByDate(year, month);
-                const dataJadwal = data.jadwal;            
+                const data = await jadwalSholat.ambilJadwalSholat(year, month);
+                const dataJadwal = data;            
                 setdataJadwalSholat(dataJadwal);
-                console.table(dataJadwal); // Pindahkan ini ke dalam useEffect
+                console.log("--- scheduleSholat")
+                console.table(dataJadwal); // data masuk
+                console.log("--- scheduleSholat")
             } catch (error) {
                 console.error("Error fetching Jadwal Sholat:", error);
             }

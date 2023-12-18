@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import JadwalSholatModel from "../Model/JadwalSholatModel";
 import Headline from "../components/Home/Headline";
-import Service from "../components/Home/Service";
 import TesJadwal from "../Model/TesModel";
+import CardServiceFeature from "../components/Home/CardServiceFeature";
 
 
 
@@ -13,11 +13,6 @@ const HomePage = () => {
 
     const [jadwalSholatData,setjadwalSholatData] = useState(null);
     const [jadwalSholatToday,setjadwalSholatToday] = useState(null);
-
-        // Contoh penggunaan
-    // tesJadwal.ambilJadwalSholat();
-    // const ambil = tesJadwal.ambilJadwalSholat();
-    // console.log("ini di home " + ambil.Fajr)
     
 
     // jadwal Sholat
@@ -31,8 +26,11 @@ const HomePage = () => {
 
             // TODAY
             const tesJadwalToday = new TesJadwal(year, month, today, "Bintan", "Indonesia", 2);
-            const dataTesJadwal = await tesJadwalToday.ambilJadwalSholat();
-            console.table( dataTesJadwal);
+            const dataTesJadwalToday = await tesJadwalToday.ambilJadwalSholatToday();
+            console.log(dataTesJadwalToday)
+            console.log("-----------")
+
+
 
             // const jadwalSholatModel = new JadwalSholatModel('0501'); --- API DOWN
 
@@ -49,11 +47,7 @@ const HomePage = () => {
                 // TODAY
                 // const todayDate = await jadwalSholatModel.getJadwalSholatByToday(year,month,today);                
                 // const dataJToday = todayDate.jadwal;
-                setjadwalSholatToday(dataTesJadwal);
-
-
-                // Lakukan sesuatu dengan data, misalnya langsung tampilkan di komponen Headline
-                // (tanpa menggunakan state)
+                setjadwalSholatToday(dataTesJadwalToday);
             } catch (error) {
                 console.error("Error fetching Jadwal Sholat:", error);
             }
@@ -66,9 +60,8 @@ const HomePage = () => {
     return (
     <>
         {jadwalSholatToday && <Headline dataJadwalSholat={jadwalSholatToday} />}
-        {jadwalSholatData && jadwalSholatToday && (
-            <Service jadwalSholat={jadwalSholatData} jadWalSholatToday={jadwalSholatToday} />
-        ) }
+        <CardServiceFeature/>
+        
     </>
 );
 

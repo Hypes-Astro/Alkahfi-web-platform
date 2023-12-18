@@ -31,11 +31,10 @@ const TableSholat = ({ jadwalSholat }) => {
           {/* head */}
           <thead>
             <tr>
-              <th></th>
+              <th>NO</th>
               <th>Tanggal</th>
-              <th>Imsak</th>
+              
               <th>Subuh</th>
-              <th>Terbit</th>
               <th>Dhuha</th>
               <th>Dzuhur</th>
               <th>Ashar</th>
@@ -48,15 +47,15 @@ const TableSholat = ({ jadwalSholat }) => {
             {currentItems.map((jadwal, index) => (
               <tr key={index}>
                 <th>{indexOfFirstItem + index + 1}</th>
-                <td>{jadwal.tanggal}</td>
-                <td>{jadwal.imsak}</td>
-                <td>{jadwal.subuh}</td>
-                <td>{jadwal.terbit}</td>
-                <td>{jadwal.dhuha}</td>
-                <td>{jadwal.dzuhur}</td>
-                <td>{jadwal.ashar}</td>
-                <td>{jadwal.maghrib}</td>
-                <td>{jadwal.isya}</td>
+                <td>{jadwal.date.readable}</td>
+
+                <td>{jadwal.timings.Fajr}</td>
+                <td>{jadwal.timings.Sunrise}</td>
+                <td>{jadwal.timings.Dhuhr}</td>
+                <td>{jadwal.timings.Asr}</td>
+                <td>{jadwal.timings.Dhuhr}</td>
+                <td>{jadwal.timings.Dhuhr}</td>
+
                 {/* Tambahkan kolom untuk dzuhur, ashar, maghrib, isya jika diperlukan */}
               </tr>
             ))}
