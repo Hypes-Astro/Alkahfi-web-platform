@@ -1,13 +1,11 @@
 import CardServiceFeature from "./CardServiceFeature";
 
-
 const Service = () => {
-
-    return(
-        <>
-            <CardServiceFeature />
-        </>
-    );
-}
+  return (
+    <>
+      <CardServiceFeature />
+    </>
+  );
+};
 
 export default Service;
