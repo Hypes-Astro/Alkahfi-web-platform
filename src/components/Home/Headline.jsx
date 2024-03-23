@@ -2,18 +2,25 @@ import PhotoMosque from "../../assets/masjid1.png";
 import CardClock from "./CardClock";
 import CardSholatToday from "./CardSholatToday";
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSholat } from "../../Redux/slice/SholatManage";
-import { useEffect } from "react";
-// dispatch used in dispatch an action
-// selector used in receive the data
+import { useState, useEffect } from "react";
+import SholatController from "../../Controller/SholatController";
 
 const Headline = () => {
-  const dispatch = useDispatch();
-  const dataSholat = useSelector((state) => state.sholat);
+  const [sholatToday, setSholatToday] = useState(null);
   useEffect(() => {
-    dispatch(fetchSholat());
-  }, [dispatch]);
+    fetchSholatData();
+  }, []);
+
+  const fetchSholatData = async () => {
+    const sholatController = new SholatController();
+    try {
+      const sholatToday = await sholatController.getSholatToday();
+      setSholatToday(sholatToday);
+      console.log("berhasil", sholatToday.ashar);
+    } catch (error) {
+      console.error("Error fetching today's sholat data:", error);
+    }
+  };
 
   return (
     <div className="w-full pt-5 px-6   ">
@@ -58,7 +65,7 @@ const Headline = () => {
         <CardClock />
       </div>
 
-      <CardSholatToday dataSholat={dataSholat} />
+      <CardSholatToday sholatToday={sholatToday} />
     </div>
   );
 };
