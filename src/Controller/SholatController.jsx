@@ -13,7 +13,7 @@ class SholatController {
         `https://api.myquran.com/v2/sholat/jadwal/0501/${formattedDate}`
       );
 
-      console.log("Response:", response.data.data.jadwal);
+      // console.log("Response:", response.data.data.jadwal);
 
       return response.data.data.jadwal; // Mengakses response.data
     } catch (error) {

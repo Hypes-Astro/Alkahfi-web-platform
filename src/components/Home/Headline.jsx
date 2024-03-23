@@ -16,7 +16,6 @@ const Headline = () => {
     try {
       const sholatToday = await sholatController.getSholatToday();
       setSholatToday(sholatToday);
-      console.log("berhasil", sholatToday.ashar);
     } catch (error) {
       console.error("Error fetching today's sholat data:", error);
     }
@@ -62,7 +61,7 @@ const Headline = () => {
       </div>
 
       <div className="box-time flex justify-center mt-[-1vh] sm:mt-[-1vh]  z-50 p-10">
-        <CardClock />
+        <CardClock sholatTime={sholatToday} />
       </div>
 
       <CardSholatToday sholatToday={sholatToday} />
