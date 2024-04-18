@@ -1,24 +1,61 @@
+import { useEffect, useState } from "react";
+import SholatController from "../../Controller/SholatController";
+
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+const day = String(currentDate.getDate()).padStart(2, "0");
+const formattedDate = `${day}-${month}-${year}`;
+
 const TableSholat = () => {
+  const [sholatData, setSholatData] = useState([]);
+  const [inputMonth, setInputMonth] = useState(month); // defaultnya adalah bulan saat ini
+
+  const handleMonthInputChange = (event) => {
+    const selectedMonth = event.target.value;
+    const monthValue = selectedMonth.split("-")[1]; // Ambil bagian bulan dari nilai input
+    setInputMonth(monthValue);
+  };
+
+  useEffect(() => {
+    fetchSholatMonth();
+  }, [inputMonth]);
+
+  const fetchSholatMonth = async () => {
+    const sholatController = new SholatController();
+
+    try {
+      const response = await sholatController.getSholatMonth(inputMonth);
+      setSholatData(response);
+
+      // console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="overflow-x-auto w-full flex h-screen flex-col items-center">
+    <div className="overflow-x-auto w-full flex h-full flex-col items-center">
       <div className="today-info mb-4 flex flex-col gap-4 justify-centerw-1/2 items-center">
-        <p className="text-center my-5">Hari ini, Tanggal</p>
-        <div className="searching flex gap-4  w-full justify-center">
+        <p className="text-center my-5">Hari ini, {formattedDate} </p>
+        <div className="flex flex-col gap-4  w-full justify-center items-center">
+          <label>Pilih Bulan</label>
           <input
-            type="text"
-            placeholder="Cari Kota"
-            className="border rounded-lg w-1/2 p-1"
+            type="month"
+            className="border rounded-lg w-1/4 p-1"
+            value={inputMonth}
+            onChange={handleMonthInputChange}
           />
-          <button>Cari</button>
         </div>
-        <table className="table table-zebra table-auto">
+        <table className="table table-zebra table-auto ">
           {/* head */}
           <thead>
             <tr className="text-base">
               <th>NO</th>
               <th>Tanggal</th>
-
+              <th>Imsak</th>
               <th>Subuh</th>
+              <th>Terbit</th>
               <th>Dhuha</th>
               <th>Dzuhur</th>
               <th>Ashar</th>
@@ -27,28 +64,22 @@ const TableSholat = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {currentItems.map((jadwal, index) => (
+            {sholatData.map((jadwal, index) => (
               <tr key={index}>
-                <th>{indexOfFirstItem + index + 1}</th>
-                <td>{jadwal.date.readable}</td>
-
-                <td> {HilangkanWib(jadwal.timings.Fajr)} </td>
-                <td>{HilangkanWib(jadwal.timings.Sunrise)}</td>
-                <td>{HilangkanWib(jadwal.timings.Dhuhr)}</td>
-                <td>{HilangkanWib(jadwal.timings.Asr)}</td>
-                <td>{HilangkanWib(jadwal.timings.Maghrib)}</td>
-                <td>{HilangkanWib(jadwal.timings.Isha)}</td>
+                <th>{index + 1}</th>
+                <td>{jadwal.tanggal}</td>
+                <td>{jadwal.imsak}</td>
+                <td>{jadwal.subuh}</td>
+                <td>{jadwal.terbit}</td>
+                <td>{jadwal.dhuha}</td>
+                <td>{jadwal.dzuhur}</td>
+                <td>{jadwal.ashar}</td>
+                <td>{jadwal.maghrib}</td>
+                <td>{jadwal.isya}</td>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
-      </div>
-
-      <span className="w-full text-center mb-3">Page</span>
-      <div className="pagination flex gap-5 w-1/2 align-middle  justify-center">
-        <button className="btn btn-sm btn-info">Previous</button>
-
-        <button className="btn btn-sm btn-info">Next</button>
       </div>
     </div>
   );

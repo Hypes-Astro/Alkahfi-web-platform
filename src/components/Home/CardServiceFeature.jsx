@@ -9,7 +9,6 @@ import HadisController from "../../Controller/HadisController";
 
 const CardServiceFeature = () => {
   const [randomHadis, setRamdomHadis] = useState(null);
-
   useEffect(() => {
     fetchHadis();
   }, []);
@@ -27,7 +26,7 @@ const CardServiceFeature = () => {
 
   const handleButtonClickHadis = () => {
     fetchHadis();
-    console.log(randomHadis);
+    // console.log(randomHadis);
     document.getElementById("my_modal_5").showModal();
   };
   const perawi = randomHadis ? randomHadis.info.perawi.name : "Loading";
