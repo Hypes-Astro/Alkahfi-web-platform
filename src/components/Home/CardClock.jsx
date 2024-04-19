@@ -40,7 +40,10 @@ const CardClock = ({ sholatTime }) => {
     sholatTimeNow = "Ashar";
   } else if (currentTime >= maghribTime && currentTime < isyaTime) {
     sholatTimeNow = "Maghrib";
-  } else if (currentTime >= isyaTime && currentTime < subuhTime) {
+  } else if (
+    (currentTime >= isyaTime && currentTime > subuhTime) ||
+    (currentTime <= subuhTime && currentTime < isyaTime)
+  ) {
     sholatTimeNow = "Isya";
   }
 
